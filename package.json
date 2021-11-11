@@ -1,0 +1,34 @@
+{
+  "name": "cms-workspace",
+  "version": "0.0.1",
+  "description": "CMS Workspace (experimental)",
+  "main": "index.js",
+  "types": "lib-es5/index.d.ts",
+  "repository": "git@github.com:/unclecheese/cms-workspace",
+  "author": "Aaron Carlino <unclecheese@leftandmain.com>",
+  "license": "MIT",
+  "dependencies": {
+    "copy-dir": "^1.3.0",
+    "glob": "^7.2.0",
+    "yargs": "^17.2.1"
+  },
+  "bin": {
+    "cms-workspace": "./lib-es5/index.js"
+  },
+  "scripts": {
+    "build": "tsc && tsc -t ES5 --outDir lib-es5 && chmod +x lib-es5/index.js",
+    "format": "prettier --write src/**/*.{ts,tsx}",
+    "watch": "tsc --watch & tsc && tsc -t ES5 --outDir lib-es5 --watch",
+    "publish-local": "npm run prepublishOnly && npm version prerelease --no-git-tag-version && npm pack && mkdirp .tarballs && mv gatsby-source-silverstripe-*.tgz .tarballs/ && echo 'published to .tarballs/'",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/node": "^16.10.3",
+    "@types/yargs": "^17.0.3",
+    "inquirer": "^8.2.0",
+    "prettier": "^2.4.1",
+    "recursive-last-modified": "^1.0.5",
+    "typescript": "^4.4.3"
+  }
+}
